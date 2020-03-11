@@ -1,4 +1,5 @@
 public class targetFirstEnd {
+
     public static int[] searchRange(int[] nums, int target) {
         //思路
         //前后一起遍历，找到目标值则放入数组中
