@@ -18,7 +18,7 @@ public class Search {
 
     public static int BinarySearchRec(int[] nums,int target,int left,int right){
         if (left > right){
-            return left;
+            return -1;
         }
         int mid = left + (right - left)/2;
         if(target > nums[mid]){
@@ -144,15 +144,18 @@ public class Search {
     public static int[] LeftRightBoundSearch(int[] nums,int target){
         int left = 0;
         int right = nums.length - 1;
-
         int[] res = {-1,-1};
-
+        int flag = BinarySearchRec(nums,target,left,right);
+        if (flag != -1){
+            res[0] = LeftBoundSearchRec(nums,target,left,right);
+            res[1] = RightBoundSearchRec(nums,target,left,right);
+        }
         return res;
     }
 
 
     public static void main(String[] args) {
-        int[] array = {1,2,8,8,8,9,10,10};
-        System.out.println(RightBoundSearchRec(array,10,0,array.length-1));
+        int[] array = {5,7,7,8,8,10};
+        System.out.println(LeftRightBoundSearch(array,8)[1]);
     }
 }

@@ -29,9 +29,55 @@ public class targetFirstEnd {
         return res;
     }
 
+    public static int[] searchRange_v1(int[] nums, int target) {
+        // 思路
+        // 二分查找是否存在目标值
+        // 👈边界查找
+        // 右边界查找
+        int last = nums.length - 1;
+        int[] res = {-1,-1};
+        int l_indx = LeftBinarySearch(nums,target,0,last);
+        if (l_indx != -1){
+            res[0] = l_indx;
+            res[1] = RightBinarySearch(nums,target,0,last);
+            return res;
+        }
+        return res;
+    }
+
+    public static int LeftBinarySearch(int[] nums,int target,int left,int right){
+        if (left > right){
+            return left;
+        }
+        int mid = left + (right - left) / 2;
+        if (target > nums[mid]){
+            return LeftBinarySearch(nums,target,mid+1,right);
+        } else if (target < nums[mid]){
+            return LeftBinarySearch(nums,target,left,mid-1);
+        } else if (target == nums[mid]){
+            return LeftBinarySearch(nums,target,left,mid-1);
+        }
+        return -1;
+    }
+
+    public static int RightBinarySearch(int[] nums,int target,int left,int right){
+        if (left > right){
+            return right;
+        }
+        int mid = left + (right - left) / 2;
+        if (target > nums[mid]){
+            return RightBinarySearch(nums,target,mid+1,right);
+        } else if (target < nums[mid]){
+            return RightBinarySearch(nums,target,left,mid-1);
+        } else if (target == nums[mid]){
+            return RightBinarySearch(nums,target,mid+1,right);
+        }
+        return -1;
+    }
+
 
     public static void main(String[] args){
         int[] nums = {5,7,7,8,8,0};
-        System.out.println(searchRange(nums,8)[0]);
+        System.out.println(LeftBinarySearch(nums,5,0,5));
     }
 }
