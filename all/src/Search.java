@@ -126,6 +126,21 @@ public class Search {
         return right;
     }
 
+    public static int RightBoundSearchRec(int[] nums, int target,int left,int right){
+        if (left > right){
+            return right;
+        }
+        int mid = left + (right - left) / 2;
+        if (target > nums[mid]) {
+            return RightBoundSearchRec(nums, target,mid+1,right);
+        } else if (target < nums[mid]){
+            return RightBoundSearchRec(nums, target,left,mid-1);
+        } else if (target == nums[mid]){
+            return RightBoundSearchRec(nums, target,mid+1,right);
+        }
+        return -1;
+    }
+
     public static int[] LeftRightBoundSearch(int[] nums,int target){
         int left = 0;
         int right = nums.length - 1;
@@ -137,7 +152,7 @@ public class Search {
 
 
     public static void main(String[] args) {
-        int[] array = {1,2,8,8,8,9,10};
-        System.out.println(InsertSearchRec(array,9,0,array.length-1));
+        int[] array = {1,2,8,8,8,9,10,10};
+        System.out.println(RightBoundSearchRec(array,10,0,array.length-1));
     }
 }
