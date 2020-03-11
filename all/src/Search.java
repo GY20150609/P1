@@ -50,6 +50,18 @@ public class Search {
         return -1;
     }
 
+    public static int InsertSearchRec(int[] nums,int target,int left,int right){
+        int mid = left + (right - left)*(target - nums[0])/(nums[nums.length-1] - nums[0]);
+        if (target > nums[mid]) {
+            return InsertSearchRec(nums,target,mid+1,right);
+        } else if (target < nums[mid]){
+            return InsertSearchRec(nums,target,left,mid-1);
+        } else if (target == nums[mid]) {
+            return mid;
+        }
+        return -1;
+    }
+
     public static int LeftBoundSearch(int[] nums, int target){
         if (nums.length == 1 && nums[0] != target){
             return -1;
@@ -126,6 +138,6 @@ public class Search {
 
     public static void main(String[] args) {
         int[] array = {1,2,8,8,8,9,10};
-        System.out.println(LeftBoundSearchRec(array,9,0,array.length-1));
+        System.out.println(InsertSearchRec(array,9,0,array.length-1));
     }
 }
