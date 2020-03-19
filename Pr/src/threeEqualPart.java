@@ -3,15 +3,12 @@ public class threeEqualPart {
         int sum = 0;
         int sum1 = 0;
         int sum2 = 0;
-        int sum3 = 0;
-
         int length = A.length;
         boolean flag = true;
         for(int m = 0; m < length; m++) {
             sum += A[m];
         }
-        int p_sum = sum%3;
-        if (p_sum != 0) {
+        if (sum%3 != 0) {
             return false;
         }
         int i = 0;
@@ -29,17 +26,14 @@ public class threeEqualPart {
                 flag = false;
             }
         }
-        for (int k = i; k <= j; k++){
-            sum3 += A[k];
-        }
-        if (sum3 == sum/3){
+        if (flag == false){
             return true;
         }
         return false;
     }
 
     public static void main(String[] args){
-        int[] A = {0,2,1,-6,6,-7,9,1,2,0,1};
-        canThreePartsEqualSum(A);
+        int[] A = {1,0,2,-6,-7,7,9,2,0,1};
+        System.out.println(canThreePartsEqualSum(A));
     }
 }

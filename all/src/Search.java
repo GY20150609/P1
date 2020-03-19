@@ -62,6 +62,43 @@ public class Search {
         return -1;
     }
 
+    public static int FibSearch(int[] nums,int target){
+        int left = 0;
+        int right = nums.length - 1;
+        int mid = 0;
+        int index = 0;
+        int length = nums.length;
+        // 1. 初始化fib数列
+        int[] fib = Fib(10);
+        // 2. 找到刚好可以包含右边界长度的数列值
+        while(right + 1 > fib[index]){
+            index++;
+        }
+        int[] tmpData = new int[fib[index] - 1];
+        //3. 比较数组长度与找到的数列值，若数组长度小于数列值，则用末尾元素补齐数组（长度与数列值一致）
+        for (int j = 0; j < fib[index] - 1; j++){
+            if (j > length - 1){
+                tmpData[j] = nums[length - 1];
+            } else {
+                tmpData[j] = nums[j];
+            }
+        }
+        //4. 黄金比例分割当前数组
+        while(right >= left){
+            mid = left + fib[index - 1] - 1;
+            if (target < tmpData[mid]){
+                right = mid - 1;
+                index = index - 1;
+            }else if(target > tmpData[mid]){
+                left = mid + 1;
+                index = index -2;
+            } else if(target == tmpData[mid]){
+                return mid > length - 1 ? mid - 1 : mid;
+            }
+        }
+        return -1;
+    }
+
     public static int LeftBoundSearch(int[] nums, int target){
         if (nums.length == 1 && nums[0] != target){
             return -1;
@@ -153,9 +190,19 @@ public class Search {
         return res;
     }
 
+    public static int[] Fib(int maxSize){
+        int[] res = new int[maxSize];
+        res[0] = 1;
+        res[1] = 1;
+        for (int i = 2; i < maxSize; i++){
+            res[i] = res[i-1] + res[i-2];
+        }
+        return res;
+    }
+
 
     public static void main(String[] args) {
-        int[] array = {5,7,7,8,8,10};
-        System.out.println(LeftRightBoundSearch(array,8)[1]);
+        int[] array = {1,2,3,4,5,6,7};
+        System.out.println(FibSearch(array,7));
     }
 }
