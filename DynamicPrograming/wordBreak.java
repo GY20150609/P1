@@ -37,15 +37,23 @@ public class wordBreak {
 
     public static boolean isWordBreak(String s, String[] table){
         int len = s.length();
-        //stage[i]表示在第i个字符后插入空格s[0,i]是否被包含
+        //stage[i]表示在第i个字符后插入空格后，字串s[0,i]是否可拆分
         boolean[] stage = new boolean[len];
-        int offset = 0;
-        for(int i = 1; i < len; i++){
-            if(offset < len){
-                String tmp = s.substring(offset,i);
-                stage[i-1] = isInclude(s.substring(offset,i),table);
-                if(stage[i-1]){
-                    offset = i;
+        //依次遍历索引从0开始的字串
+        for(int i = 0; i < len; i++){
+            //判断字串是否被包含
+            //若被包含则状态标记为true
+            if(isInclude(s.substring(0,i+1),table)){
+                stage[i] = true;
+                continue;
+            }
+            //若不被包含，拆分子串进一步判断
+            // 进一步遍历判断i以前的所有stage[j]是否为true,判断j以后的子串是否被包含
+            for(int j = 0; j < i; j++){
+                if(stage[j] && isInclude(s.substring(j+1,i+1),table)){
+                    stage[i] = true;
+                    //只要任一拆分满足条件说明子串可拆分，直接返回
+                    break;
                 }
             }
         }
@@ -63,9 +71,9 @@ public class wordBreak {
     }
 
     public static void main(String[] args){
-        String s = "leetcode";
-        String[] wordDict = new String[] {"leet", "code"};
-        isWordBreak(s,wordDict);
+        String s = "aaaaaaa";
+        String[] wordDict = new String[] {"aaaa", "aaa"};
+        System.out.println(isWordBreak(s,wordDict));
 
     }
 }

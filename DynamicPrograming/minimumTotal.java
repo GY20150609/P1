@@ -33,26 +33,28 @@ public class minimumTotal {
     public static int Solution(ArrayList<ArrayList<Integer>> arr){
         int row = arr.size();
         int len = arr.get(row - 1).size();
+        int tmpMin = Integer.MAX_VALUE;
         //stage[i][j]表示到达i行第j个节点的最短路径
         int[][] stage = new int[len][len];
         //初始化
         stage[0][0] = arr.get(0).get(0);
         //计算顺序，下一行依赖前一行
         for (int i = 1; i < row; i++){
-            for(int j = 0; j < arr.get(i).size(); j++){
+            for(int j = 0; j <= i; j++){
                 //转移方程
-
                 if(j == 0){
                     stage[i][j] = stage[i-1][0] + arr.get(i).get(j);
-                } else if(j == arr.get(i).size() - 1){
-                    stage[i][j] = stage[i-1][arr.get(i).size() - 2] + arr.get(i).get(j);
+                } else if(j == i){
+                    stage[i][j] = stage[i-1][j - 1] + arr.get(i).get(j);
                 } else {
-                    stage[i][j] = Math.min(stage[i-1][j/2]+arr.get(i).get(j),stage[i-1][j/2+1]+arr.get(i).get(j));
+                    stage[i][j] = Math.min(stage[i-1][j],stage[i-1][j-1]) + arr.get(i).get(j);
                 }
             }
         }
-        display(stage);
-        return 0;
+        for (int j = 0; j < len; j++){
+            tmpMin = Math.min(tmpMin,stage[row-1][j]);
+        }
+        return tmpMin;
     }
 
     public static void main(String[] args) {

@@ -24,28 +24,54 @@ public class maxProduct {
             System.out.println();
         }
     }
-
+    //时间复杂度O(n^2)
     public static int Solution(int[] arr){
         int len = arr.length;
-        int[][] stage = new int[len][len];
+        //int[][] stage = new int[len][len];
+        int stage = 0;
+        int pre = 0;
+        int tmpMax = Integer.MIN_VALUE;
         for (int i = 0; i< len; i++){
             for(int j = 0; j < len; j++){
                 if(j < i){
-                    stage[i][j] = Integer.MIN_VALUE;
+                    stage = Integer.MIN_VALUE;
                 } else if (i == j){
-                    stage[i][j] = arr[i];
+                    stage = arr[i];
                 } else {
-                    stage[i][j] = stage[i][j-1]*arr[j];
+                    stage = pre*arr[j];
                 }
+                pre = stage;
+                tmpMax = Math.max(tmpMax,stage);
             }
         }
-        display(stage);
+        return tmpMax;
+    }
 
-        return -1;
+    //时间复杂度O(n)
+    public static int Solution1(int[] arr){
+        int imin = arr[0];
+        int imax = arr[0];
+        int max = arr[0];
+        int tmp;
+        for(int i = 1; i < arr.length; i++){
+            //碰到负数则交换最大、最小值
+            if(arr[i] < 0){
+                tmp = imin;
+                imin = imax;
+                imax = tmp;
+            }
+            imin *= arr[i];
+            imax *= arr[i];
+            imin = Math.min(imin,arr[i]);
+            imax = Math.max(imax,arr[i]);
+            max = Math.max(imax,max);
+        }
+
+        return max;
     }
 
     public static void main(String[] args){
         int[] test = {-2,0,-1};
-        Solution(test);
+        System.out.println(Solution(test));
     }
 }

@@ -31,9 +31,10 @@ stage[i]表示字符s[0,i]解码方法数
     若前一位字符为'2'或'1'，则stage[i] = stage[i-2]
     否则 return 0
 若当前字符前一位为'1' stage[i] = stage[i-1] + stage[i-2]
-若当前字符前一维为'2'
+若当前字符前一维为'2' && s[i]<=6 stage[i] = stage[i-1] + stage[i-2]
 3.初始条件
 stage[0] = 1
+stage[1] = 1;
 4.计算顺序
 确保计算第i个字符时，i-1,i-2已经计算
  */
@@ -50,7 +51,7 @@ public class numDecodings {
         int len = s.length();
         int[] stage = new int[len];
         stage[0] = 1;
-        stage[1] = 2;
+        stage[1] = 1;
         for(int i = 1; i < len; i++){
             if(s.charAt(i) == '0'){
                 if(s.charAt(i-1) == '1' || s.charAt(i-1) == '2'){
@@ -58,15 +59,12 @@ public class numDecodings {
                 } else {
                     stage[i] = 0;
                 }
-            } else {
-
             }
-            if(s.charAt(i-1) == '1' && i >= 2){
+            if(s.charAt(i-1) == '1'){
                 stage[i] = stage[i-1] + stage[i-2];
-            } else if(s.charAt(i-1) == '2'){
-                stage[i] = stage[i-1] + 1;
-            } else{
-
+            }
+            if(s.charAt(i-1) == '2' && s.charAt(i)<=6) {
+                stage[i] = stage[i - 1] + stage[i-2];
             }
         }
         display(stage);
