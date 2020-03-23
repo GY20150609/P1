@@ -41,7 +41,6 @@ public class UniquePaths2 {
             return 0;
         }
 
-        // Number of ways of reaching the starting cell = 1.
         arr[0][0] = 1;
 
         //第一列、行只可能为0，1

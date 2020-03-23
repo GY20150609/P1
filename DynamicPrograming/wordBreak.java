@@ -25,5 +25,47 @@ package DynamicPrograming;
 
  */
 
+import java.util.HashSet;
+
 public class wordBreak {
+
+    public static void display(boolean[] vv) {
+        for (int i = 0; i < vv.length; i++){
+            System.out.print(vv[i] + " ");
+        }
+    }
+
+    public static boolean isWordBreak(String s, String[] table){
+        int len = s.length();
+        //stage[i]表示在第i个字符后插入空格s[0,i]是否被包含
+        boolean[] stage = new boolean[len];
+        int offset = 0;
+        for(int i = 1; i < len; i++){
+            if(offset < len){
+                String tmp = s.substring(offset,i);
+                stage[i-1] = isInclude(s.substring(offset,i),table);
+                if(stage[i-1]){
+                    offset = i;
+                }
+            }
+        }
+        display(stage);
+        return stage[len-1];
+    }
+
+    public static boolean isInclude(String des,String[] table){
+        for (String item : table){
+            if (item.equals(des)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static void main(String[] args){
+        String s = "leetcode";
+        String[] wordDict = new String[] {"leet", "code"};
+        isWordBreak(s,wordDict);
+
+    }
 }

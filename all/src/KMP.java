@@ -56,8 +56,9 @@ public class KMP {
     public static void main(String[] args) {
         String s = "ABDCABCA";
         String p = "ABC";
-        int[] next = KMPNext(p);
-        int result = KMPSearch(s,p,next);
-        System.out.println(result);
+        int[] next = KMPNext("aaaba");
+        display(next);
+        //int result = KMPSearch(s,p,next);
+        //System.out.println(result);
     }
 }

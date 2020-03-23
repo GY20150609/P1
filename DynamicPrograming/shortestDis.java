@@ -17,7 +17,7 @@ package DynamicPrograming;
 解释: 因为路径 1→3→1→1→1 的总和最小。
 
 思路：
-到达有下角无非下移和右移，每次转移的时候比较下和右即可
+到达右下角无非下移和右移，每次转移的时候比较下和右即可
 stage[i][j] [0,0]-[i,j]的最短路径之和
  */
 public class shortestDis {
