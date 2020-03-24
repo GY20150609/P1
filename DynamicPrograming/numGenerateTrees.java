@@ -25,5 +25,22 @@ package DynamicPrograming;
 
  */
 
+import java.util.*;
+
 public class numGenerateTrees {
+
+    public List<TreeNode> generateTrees(int n) {
+        List<TreeNode> l = new ArrayList<>();
+        return l;
+
+    }
+
+
+}
+
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+    TreeNode(int x) { val = x; }
 }
