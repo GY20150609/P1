@@ -12,6 +12,7 @@ public class LinkList2InvertArrayList {
             ArrayList<Integer> res = new ArrayList<>();
             ListNode tmpNode = listNode;
             while(tmpNode != null){
+                //每次都往索引0插入，自然前面得元素会后移
                 res.add(0,tmpNode.val);
                 tmpNode = tmpNode.next;
             }
@@ -46,17 +47,17 @@ public class LinkList2InvertArrayList {
     // 思路4 ： 辅助指针实现翻转
     public static ArrayList<Integer> printListFromTailToHeadAddi(ListNode listNode){
         ArrayList<Integer> res = new ArrayList<>();
-        ListNode preNode = null; // 末尾节点
+        ListNode newNode = null; // 末尾节点
         ListNode tmpNode = listNode; // 辅助指针遍历
         while(tmpNode != null){
             ListNode nextNode = tmpNode.next;
-            tmpNode.next = preNode;
-            preNode = tmpNode;
+            tmpNode.next = newNode;
+            newNode = tmpNode;
             tmpNode = nextNode;
         }
-        while (preNode != null){
-            res.add(preNode.val);
-            preNode = preNode.next;
+        while (newNode != null){
+            res.add(newNode.val);
+            newNode = newNode.next;
         }
         return res;
     }
@@ -69,7 +70,7 @@ public class LinkList2InvertArrayList {
         ListNode r1 = new ListNode(1);
         r1.next = new ListNode(2);
         r1.next.next  = new ListNode(3);
-        System.out.println(printListFromTailToHeadAddi(r1));
+        System.out.println(printListFromTailToHead(r1));
     }
 
 }

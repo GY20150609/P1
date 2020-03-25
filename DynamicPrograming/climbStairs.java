@@ -26,4 +26,18 @@ package DynamicPrograming;
  */
 
 public class climbStairs {
+
+    public static int Solution(int n){
+        int[] stage = new int[n+1];
+        stage[0] = 1;
+        stage[1] = 1;
+        for(int i = 2; i <= n; i++){
+            stage[i] = stage[i-1] + stage[i-2];
+        }
+        return stage[n];
+    }
+
+    public static void main(String[] args){
+        System.out.println(Solution(5));
+    }
 }

@@ -26,6 +26,11 @@ package BasicStructure.Tree;
 
  */
 
+import java.util.ArrayDeque;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Queue;
+
 public class BinaryTree {
     private node root;
 
@@ -87,6 +92,25 @@ public class BinaryTree {
         }
     }
 
+    //层级遍历
+    //队列先进先出，依次把每个节点的左右节点push到队列
+    public void levelSort(){
+        Queue<node> q = new ArrayDeque<node>();
+        q.add(this.root);
+        while (!q.isEmpty()){
+            node tmp = q.poll();
+            if(tmp != null){
+                System.out.println(tmp.toString());
+                if(tmp.getLeft() != null){
+                    q.add(tmp.getLeft());
+                }
+                if(tmp.getRight() != null){
+                    q.add(tmp.getRight());
+                }
+            }
+        }
+    }
+
     //删除节点
     public void delNode(int no) {
         if (root != null) {
@@ -111,6 +135,22 @@ public class BinaryTree {
         }
     }
 
+    //统计节点个数
+    public int numNodes(){
+        if(this == null){
+            return 0;
+        }
+        return this.root.numNodes();
+    }
+
+    //深度
+    public int depth(){
+        if(this == null){
+            return 0;
+        }
+        return this.root.depth();
+    }
+
     public static void main(String[] args){
         BinaryTree tree = new BinaryTree();
         node root = new node("爷爷",0);
@@ -132,11 +172,13 @@ public class BinaryTree {
         // 后序遍历
         //System.out.println("后序");
         //System.out.println(tree.postSearch(2));
-        System.out.println("删除节点前");
-        tree.preSort();
-        tree.delRuleNode(4);
-        System.out.println("删除节点后");
-        tree.preSort();
+        //System.out.println("删除节点前");
+        //tree.preSort();
+        //tree.delRuleNode(4);
+        //System.out.println("删除节点后");
+        //tree.preSort();
+        tree.levelSort();
+        //System.out.println(tree.depth());
     }
 }
 
@@ -242,6 +284,7 @@ class node {
         if (this.left != null) {
             resNode = this.left.infixSearch(no);
         }
+        //判断左递归是否找到
         if (resNode != null) {
             return resNode;
         }
@@ -346,6 +389,36 @@ class node {
         if (this.right != null) {
             this.right.delRuleNode(no);
         }
+    }
+
+    //节点数
+    public int numNodes(){
+        int left = 0;
+        int right = 0;
+        //左子树节点个数
+        if(this.left != null){
+            left = this.left.numNodes();
+        }
+        //右子树节点个数
+        if(this.right != null){
+            right = this.right.numNodes();
+        }
+        return 1 + left + right;
+    }
+
+    //深度
+    public int depth() {
+        int left = 0;
+        int right = 0;
+        //左子树最大深度
+        if (this.left != null) {
+            left = this.left.depth();
+        }
+        //右子树最大深度
+        if (this.right != null) {
+            right = this.right.depth();
+        }
+        return 1 + Math.max(left, right);
     }
 }
 

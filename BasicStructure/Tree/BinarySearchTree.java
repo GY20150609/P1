@@ -241,7 +241,7 @@ class BSTNode{
         return null;
     }
 
-    //找到最小节点
+    //找到子树最小节点
     public BSTNode SearchMin(){
         BSTNode minNode = this;
         while(minNode.left != null){
