@@ -151,6 +151,37 @@ public class BinaryTree {
         return this.root.depth();
     }
 
+    //叶子节点个数
+    public int numLeafNode(){
+        if(this == null){
+            return 0;
+        }
+        return this.root.numLeafNode();
+    }
+
+    //k层节点个数
+    public int kLevelNumNode(int k){
+        if(this == null || k < 1){
+            return 0;
+        }
+        return this.root.kLevelNumNodes(k);
+    }
+
+    //是否平衡二叉树
+    public boolean isAVL(){
+        if(this == null){
+            return false;
+        }
+        return this.root.isAVL()>-1?true:false;
+    }
+
+    //判断两个二叉树是否相同
+    public boolean isSame(node newNode){
+        return this.root.isSame(newNode);
+    }
+
+
+
     public static void main(String[] args){
         BinaryTree tree = new BinaryTree();
         node root = new node("爷爷",0);
@@ -163,22 +194,10 @@ public class BinaryTree {
         node1.setLeft(node4);
         node2.setRight(node3);
         tree.setRoot(root);
-        // 前序遍历
-        //System.out.println("前序");
-        //System.out.println(tree.preSearch(1));
-        // 中序遍历
-        //System.out.println("中序");
-        //System.out.println(tree.infixSearch(1));
-        // 后序遍历
-        //System.out.println("后序");
-        //System.out.println(tree.postSearch(2));
-        //System.out.println("删除节点前");
-        //tree.preSort();
-        //tree.delRuleNode(4);
         //System.out.println("删除节点后");
         //tree.preSort();
         tree.levelSort();
-        //System.out.println(tree.depth());
+        System.out.println(tree.isSame(tree.root));
     }
 }
 
@@ -419,6 +438,80 @@ class node {
             right = this.right.depth();
         }
         return 1 + Math.max(left, right);
+    }
+
+    //叶子节点个数
+    public int numLeafNode(){
+        int left = 0;
+        int right = 0;
+        if(this.left == null && this.right == null){
+            return 1;
+        }
+        if(this.left != null){
+            left = this.left.numLeafNode();
+        }
+        if(this.right != null){
+            right = this.right.numLeafNode();
+        }
+        return left + right;
+    }
+
+    //第k层得节点数
+    public int kLevelNumNodes(int k){
+        int l = 0;
+        int r = 0;
+        if(this == null && k < 1) {
+            return 0;
+        }
+        if(k==1){
+            return 1;
+        }
+        if(this.left != null){
+            l = this.left.kLevelNumNodes(k-1);
+        }
+        if(this.right != null){
+            r = this.right.kLevelNumNodes(k-1);
+        }
+        return l + r;
+    }
+
+    //判断以当前节点为根节点的两个子二叉树是否平为衡二叉树
+    //二叉树的每个节点的左右两个子树的高度差的绝对值不超过1。
+    public int isAVL(){
+        int l = 0;
+        int r = 0;
+        if(this == null){
+            return 0;
+        }
+        //利用现有递归求取深度，避免不必要的开销
+        if(this.left != null){
+            l = this.left.isAVL();
+        }
+        if(this.right != null){
+            r = this.right.isAVL();
+        }
+        if(l == -1 || r == -1 || Math.abs(l-r) > 1){
+            return -1;
+        }
+        return Math.max(l,r)+1;
+    }
+
+    //判断以当前节点为根节点的两个子二叉树是否相同
+    public boolean isSame(node newNode){
+        if(this == null && newNode == null){
+            return true;
+        } else if(this == null || newNode == null){
+            return false;
+        }
+        if(this.data == newNode.data){
+            return true;
+        }
+        boolean l = this.left.isSame(newNode.left);
+        boolean r = this.right.isSame(newNode.right);
+        if(l && r){
+            return true;
+        }
+        return false;
     }
 }
 

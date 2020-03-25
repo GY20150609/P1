@@ -130,13 +130,42 @@ public class BinarySearchTree {
         }
     }
 
+    //BST最近公共祖先
+    public BSTNode BSTLca(int d1,int d2){
+        BSTNode tmpNode = this.head;
+        int tmp;
+        //小的在前，大的在后，后面好确定边界
+        if(d1 > d2){
+            tmp = d1;
+            d1 = d2;
+            d2 = d1;
+        }
+        while(true){
+            //当前两个节点在左子树
+            if(tmpNode.data > d2){
+                //继续向左搜寻
+                tmpNode = tmpNode.left;
+            }
+            //当前两个节点在右子树
+            else if (tmpNode.data < d1){
+                tmpNode = tmpNode.right;
+            }
+            //两个节点刚好在当前节点两侧
+            else {
+                break;
+            }
+        }
+        return tmpNode;
+    }
+
     public static void main(String[] args){
         BinarySearchTree bst = new BinarySearchTree();
-        int[] test = {1,2,5,3,4,6};
+        int[] test = {7,3,10,12,5,1,9};
         for (int i = 0; i < test.length; i++){
             bst.add(new BSTNode(test[i]));
         }
         bst.infixShow();
+        System.out.println(bst.BSTLca(9,12).toString());
     }
 
 
