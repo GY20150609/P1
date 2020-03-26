@@ -1,4 +1,4 @@
-package BinaryTree;
+package Solution.BinaryTree;
 
 /*
 给定一个二叉树和一个目标和，找到所有从根节点到叶子节点路径总和等于给定目标和的路径。
@@ -25,8 +25,6 @@ package BinaryTree;
 
 import BasicStructure.Tree.TreeNode;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class PathSum {

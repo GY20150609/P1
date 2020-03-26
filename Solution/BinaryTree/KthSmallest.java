@@ -1,4 +1,4 @@
-package BinaryTree;
+package Solution.BinaryTree;
 
 import BasicStructure.Tree.TreeNode;
 /*
