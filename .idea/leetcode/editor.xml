@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="LeetcodeEditor">
+    <option name="projectConfig">
+      <map>
+        <entry key="$PROJECT_DIR$/Solution/leetcode/editor/cn/[82]删除排序链表中的重复元素 II.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/Solution/leetcode/editor/cn/[82]删除排序链表中的重复元素 II.java" />
+              <option name="questionId" value="82" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/cn/[82]删除排序链表中的重复元素 II.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/cn/[82]删除排序链表中的重复元素 II.java" />
+              <option name="questionId" value="82" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/ls/src/leetcode/editor/cn/[82]删除排序链表中的重复元素 II.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/ls/src/leetcode/editor/cn/[82]删除排序链表中的重复元素 II.java" />
+              <option name="questionId" value="82" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
