@@ -18,12 +18,53 @@
 //     偷窃到的最高金额 = 2 + 9 + 1 = 12 。
 // 
 // Related Topics 动态规划
+/*
+思路：
+1.子问题
+第i间房偷/不偷  对应的是  偷第i间房的最大收益/不偷第i间房的最大收益
+pre[i] 表示不抢第i间房的最大收益
+cur[i] 表示抢第i间房的最大收益
 
+2.状态转移方程
+ temp = max(num[i]+pre[i-1],cur[i-1])
+ pre[i] = cur[i-1];
+ cur[i] = temp
+
+3.初始条件
+pre[0] = 0
+cur[0] = 0
+ */
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+    /*
     public int rob(int[] nums) {
-
+        int n = nums.length;
+        int[] pre = new int[n+1];
+        int[] cur = new int[n+1];
+        pre[0] = 0;
+        cur[0] = 0;
+        int temp = 0;
+        for(int i = 0; i < n; i++){
+            temp = Math.max(nums[i]+pre[i],cur[i]);
+            pre[i+1] = cur[i];
+            cur[i+1] = temp;
+        }
+        return temp;
     }
+     */
+    public int rob(int[] nums) {
+        int n = nums.length;
+        int pre = 0;
+        int cur = 0;
+        int temp = 0;
+        for(int i = 0; i < n; i++){
+            temp = Math.max(nums[i]+pre,cur);
+            pre = cur;
+            cur = temp;
+        }
+        return temp;
+    }
+
 }
 //leetcode submit region end(Prohibit modification and deletion)
