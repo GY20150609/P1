@@ -36,18 +36,17 @@ if(i == 0 || j ==0) stage[i][j] = matrix[i][j]
 class Solution {
     public int maximalSquare(char[][] matrix) {
         int m = matrix.length;
-        int n = matrix[0].length;
-        if(m == 0 || n == 0){
+        if(m == 0){
             return 0;
         }
+        int n = matrix[0].length;
         int tmpMax = Integer.MIN_VALUE;
         int[][] stage = new int[m][n];
         for(int i = 0; i < m; i++){
             for(int j = 0; j < n; j++){
                 if(i == 0 || j == 0){
                     stage[i][j] = matrix[i][j] - 48;
-                }
-                if(i > 0 && j > 0 && matrix[i][j] == '1'){
+                }else if(matrix[i][j] == '1'){
                     stage[i][j] = Math.min(Math.min(stage[i-1][j],stage[i][j-1]),stage[i-1][j-1]) + 1;
                 }
                 tmpMax = tmpMax < stage[i][j] ? stage[i][j] : tmpMax;

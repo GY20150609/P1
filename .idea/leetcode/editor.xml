@@ -19,6 +19,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/ls/src/leetcode/editor/cn/[1025]除数博弈.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/ls/src/leetcode/editor/cn/[1025]除数博弈.java" />
+              <option name="questionId" value="1086" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/ls/src/leetcode/editor/cn/[114]二叉树展开为链表.java">
           <value>
             <LeetcodeEditor>
@@ -40,6 +48,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/ls/src/leetcode/editor/cn/[129]求根到叶子节点数字之和.java" />
               <option name="questionId" value="129" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/ls/src/leetcode/editor/cn/[139]单词拆分.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/ls/src/leetcode/editor/cn/[139]单词拆分.java" />
+              <option name="questionId" value="139" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -115,6 +131,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/ls/src/leetcode/editor/cn/[279]完全平方数.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/ls/src/leetcode/editor/cn/[279]完全平方数.java" />
+              <option name="questionId" value="279" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/ls/src/leetcode/editor/cn/[2]两数相加.java">
           <value>
             <LeetcodeEditor>
@@ -179,6 +203,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/ls/src/leetcode/editor/cn/[746]使用最小花费爬楼梯.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/ls/src/leetcode/editor/cn/[746]使用最小花费爬楼梯.java" />
+              <option name="questionId" value="747" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/ls/src/leetcode/editor/cn/[783]二叉搜索树结点最小距离.java">
           <value>
             <LeetcodeEditor>
@@ -232,6 +264,30 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/ls/src/leetcode/editor/cn/[94]二叉树的中序遍历.java" />
               <option name="questionId" value="94" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/ls/src/leetcode/editor/cn/[面试题 08.01]三步问题.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/ls/src/leetcode/editor/cn/[面试题 08.01]三步问题.java" />
+              <option name="questionId" value="100197" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/ls/src/leetcode/editor/cn/[面试题 16.17]连续数列.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/ls/src/leetcode/editor/cn/[面试题 16.17]连续数列.java" />
+              <option name="questionId" value="1000003" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/ls/src/leetcode/editor/cn/[面试题 17.16]按摩师.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/ls/src/leetcode/editor/cn/[面试题 17.16]按摩师.java" />
+              <option name="questionId" value="1000023" />
             </LeetcodeEditor>
           </value>
         </entry>
