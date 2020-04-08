@@ -1,8 +1,11 @@
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public class demo {
+
+    List<List<Integer>> result;
 
     public static int maximalSquare(char[][] matrix) {
         int m = matrix.length;
@@ -96,9 +99,17 @@ public class demo {
         List<String> table = new ArrayList<String>();
         table.add("aaaa");
         table.add("aaa");
-        String s = "aaaaaaa";
+        List<Integer> res = new ArrayList<Integer>();
+        res.add(1);
+        res.clear();
+        String ss = "111";
+        Stack<Integer> s = new Stack<Integer>();
+        s.isEmpty()
+
+
+
 
         //System.out.println(numSquares(18));
-        System.out.println(wordBreak(s,table));
+        System.out.println(res);
     }
 }
