@@ -1,6 +1,5 @@
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class demo {
 
@@ -25,23 +24,26 @@ public class demo {
         return tmpMax*tmpMax;
     }
 
-    public static int numSquares(int n) {
-        if( n <= 3){
-            return n;
-        }
-        int[] stage = new int[n+1];
-        stage[0] = 0;
-        stage[1] = 1;
-        stage[2] = 2;
-        for(int i = 3; i <= n; i++){
-            int tmpMin = i;
-            int maxVal = (int)Math.floor(Math.sqrt(i));
-            for(int j = 1; j <= maxVal; j++){
-                tmpMin = Math.min(tmpMin,stage[i-j*j]+1);
+    public static int numOfSquare(int n) {
+        if (n == 1) return 1;
+        if (n == 2) return 2;
+        int[] res = new int[n + 1];
+        res[1] = 1;
+        res[2] = 2;
+        for (int i = 3; i <= n; i++) {
+            int square = (int) Math.sqrt(i);
+            if (square * square == i) {
+                res[i] = 1;
+            } else {
+                int min = i;
+                for (int j = 1; j <= i/2; j++) {
+                    int tmp = res[j] + res[i - j];
+                    if (min > tmp) min = tmp;
+                }
+                res[i] = min;
             }
-            stage[i] = tmpMin;
         }
-        return stage[n];
+        return res[n];
     }
 
 
@@ -91,14 +93,48 @@ public class demo {
 
     }
 
+    public static boolean canPartition(int[] nums) {
+        int n = nums.length;
+        if(n == 2){
+            if(nums[0] == nums[1]){
+                return true;
+            } else {
+                return false;
+            }
+        }
+        //排序
+        Arrays.sort(nums);
+        //双索引遍历
+        int i = 1;
+        int j = n - 2;
+        int curSum1 = nums[0];
+        int curSum2 = nums[n-1];
+        while(i <= j){
+            if(curSum1 < curSum2){
+                curSum1 += nums[i];
+                i++;
+            } else {
+                curSum2 += nums[j];
+                j--;
+            }
+        }
+        return curSum1 == curSum2;
+    }
+
+
     public static void main(String[] args){
         int n = Integer.MIN_VALUE;
         List<String> table = new ArrayList<String>();
         table.add("aaaa");
         table.add("aaa");
         String s = "aaaaaaa";
+        Queue<String> queue = new LinkedList<String>();
+        //Arrays.sort(new int[] {1,5,11,5});
+        System.out.println(canPartition(new int[] {1,2,3,4,5,6,7}));
 
-        //System.out.println(numSquares(18));
-        System.out.println(wordBreak(s,table));
+
+
+        //System.out.println(numOfSquare(18));
+        //System.out.println(wordBreak(s,table));
     }
 }
