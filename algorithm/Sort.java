@@ -119,7 +119,6 @@ public class Sort {
                 i++;
                 j--;
             }
-
         }
         //目标值左边部分遍历
         if(low<j)
@@ -128,6 +127,61 @@ public class Sort {
         if(high>i)
             quickSort(array, i, high);
         return array;
+    }
+
+    public static int[] quickSort1(int[] array,int left,int right) {
+        //结束条件
+        if(left > right) {
+            return array;
+        }
+        //基准值
+        int pivotIndex = left + (right - left) / 2;
+        int pivotVal = array[pivotIndex];
+        int l = left;
+        int r = right;
+        //分别从左右两端开始遍历至l与r相遇
+        while(l <= r) {
+            //左半部分寻找大于基准值的索引，最多到基准值处
+            while (array[l] < pivotVal) {
+                l++;
+            }
+            //右半部分寻找小于基准值的索引，最多到基准值处
+            while(array[r] > pivotVal) {
+                r--;
+            }
+            //如果没有相遇就交换
+            if(l < r){
+                int temp = array[l];
+                array[l] = array[r];
+                array[r] = temp;
+                //交换后索引分别前|后移一位，表示交换后的元素已经不用再移动
+                l++;
+                r--;
+            }
+            //还有种可能就是相遇到基准值处，说明两边的值已经满足要求，这时将基准值排除后，直接break;
+            else if (l == r) {
+                l++;
+                r--;
+                break;
+            }
+        }
+        //最终肯定是r到了基准值的左侧，l到了基准值的右侧，且 l = r + 1
+        quickSort1(array,left,r);
+        quickSort1(array,l,right);
+        return array;
+    }
+
+    public static int[] heapSort(int[] array) {
+
+        for(int i = array.length - 1; i >= 0; i++) {
+            heapfy(array,i,0);
+        }
+
+        return array;
+    }
+
+    public static void heapfy(int[] array,int n,int i) {
+
     }
 
     public static int[] radixSort(int[] array){
@@ -269,10 +323,9 @@ public class Sort {
 
     public static void main(String[] args) {
         String s = "3,4,2,5,1";
-        int[] t = new int[] {2,2,1,3,4,5};
+        int[] t = new int[] {1,3,2,2,4,5};
         //System.out.println(node2num(s));
-        //mergeSort(test,0,3);
-        display(test(t,3));
+        display(quickSort1(t,0,t.length-1));
     }
 
 }
