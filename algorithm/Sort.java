@@ -171,6 +171,15 @@ public class Sort {
         return array;
     }
 
+    public static int[] quickSort2(int[] array, int left, int right) {
+        if(left < right) {
+            int mid = partition(array,left,right);
+            quickSort2(array,left,mid);
+            quickSort2(array,mid+1,right);
+        }
+        return array;
+    }
+
     public static int[] heapSort(int[] array) {
 
         for(int i = array.length - 1; i >= 0; i++) {
@@ -258,6 +267,24 @@ public class Sort {
 
     }
 
+    public static int partition(int[] array, int left,int right) {
+        int pivotVal = array[left];
+        int l = left;
+        int r = left + 1;
+        while(r < right) {
+            if(array[r] < pivotVal) {
+                l++;
+                int temp = array[l];
+                array[l] = array[r];
+                array[r] = temp;
+            }
+            r++;
+        }
+        array[left] = array[l];
+        array[l] = pivotVal;
+        return left;
+    }
+
     public static int[] merge(int[] array,int r_s,int r_e){
         int insertVal;
         for (int i = r_s; i <= r_e; i++){
@@ -323,9 +350,9 @@ public class Sort {
 
     public static void main(String[] args) {
         String s = "3,4,2,5,1";
-        int[] t = new int[] {1,3,2,2,4,5};
+        int[] t = new int[] {2,4,1,2,6,2,7};
         //System.out.println(node2num(s));
-        display(quickSort1(t,0,t.length-1));
+        display(quickSort2(t,0,t.length-1));
     }
 
 }
