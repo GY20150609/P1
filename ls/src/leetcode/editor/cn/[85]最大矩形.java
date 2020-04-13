@@ -15,15 +15,31 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public int maximalRectangle(char[][] matrix) {
-        int m = matrix.length;
-        int n = matrix[0].length;
-        //表示以i，j为右下角的最大矩形的面积
-        int[][] stage = new int[m][n];
-        stage[0][0] = matrix[0][0] == '1' ? 1 : 0;
-
-
-        return stage[m-1][n-1];
+    public int maximalRectangle(char[][] arr) {
+        int rows = arr.length;
+        int cols = arr[0].length;
+        int[][] res = new int[rows][cols];
+        int max = 0;
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < cols; col++) {
+                if (row == 0 && col == 0) {
+                    if (arr[row][col] == '1') res[row][col] = 1;
+                } else if (row == 0) {
+                    if (arr[row][col] == '1') res[row][col] = res[row][col - 1] + 1;
+                } else if (col == 0) {
+                    if (arr[row][col] == '1') res[row][col] = res[row - 1][col] + 1;
+                } else {
+                    int tmp_res = 0;
+                    if (arr[row][col] == '1') {
+                        if (res[row - 1][col] + 1 > res[row][col - 1] + 1) tmp_res = res[row - 1][col] + 1;
+                        else tmp_res = res[row][col - 1] + 1;
+                    }
+                    res[row][col] = tmp_res;
+                }
+                if (max < res[row][col]) max = res[row][col];
+            }
+        }
+        return max;
 
     }
 }
