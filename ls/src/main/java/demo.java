@@ -1,11 +1,8 @@
 import java.lang.reflect.Array;
-<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
-=======
 import java.util.*;
->>>>>>> e2ff76713ddc738afb3be97b661aba925ed44233
 
 public class demo {
 
@@ -53,8 +50,6 @@ public class demo {
         }
         return res[n];
     }
-
-
 
     public static boolean divisorGame(int N) {
         if (N == 1){
@@ -130,34 +125,9 @@ public class demo {
     }
 
 
-    public static void main(String[] args){
-        int n = Integer.MIN_VALUE;
-        List<String> table = new ArrayList<String>();
-        table.add("aaaa");
-        table.add("aaa");
-<<<<<<< HEAD
-        List<Integer> res = new ArrayList<Integer>();
-        res.add(1);
-        res.clear();
-        String ss = "111";
-        Stack<Integer> s = new Stack<Integer>();
-        s.isEmpty()
+    public static void main(String[] args) {
 
-
-
-
-        //System.out.println(numSquares(18));
-        System.out.println(res);
-=======
-        String s = "aaaaaaa";
-        Queue<String> queue = new LinkedList<String>();
-        //Arrays.sort(new int[] {1,5,11,5});
-        System.out.println(canPartition(new int[] {1,2,3,4,5,6,7}));
-
-
-
-        //System.out.println(numOfSquare(18));
-        //System.out.println(wordBreak(s,table));
->>>>>>> e2ff76713ddc738afb3be97b661aba925ed44233
+        List<List<Integer>> t = new ArrayList<List<Integer>>();
+        Integer.MAX_VALUE;
     }
 }

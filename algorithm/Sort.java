@@ -182,15 +182,51 @@ public class Sort {
 
     public static int[] heapSort(int[] array) {
 
-        for(int i = array.length - 1; i >= 0; i++) {
-            heapfy(array,i,0);
+        initHeap(array,0,array.length-1);
+        for (int i = array.length - 1; i >= 1; i--) {
+            swap(array, i, 0);
+            adjustHeap(array, 0, i - 1);
         }
-
         return array;
     }
 
-    public static void heapfy(int[] array,int n,int i) {
+    public static void initHeap(int[] array,int index,int end){
+        if (array == null || index > end) {
+            return;
+        }
+        boolean flag = true;
+        //从底向上遍历
+        for (int i = end; i >= index; i--) {
+            //计算当前节点的父节点
+            int parent = (i - 1) / 2;
+            if (array[i] > array[parent]) {
+                swap(array, i, parent);
+                flag = false;
+            }
+        }
+        //若底层有调整，则继续递归
+        if (!flag) {
+            initHeap(array, index, end);
+        }
 
+    }
+
+    public static void adjustHeap(int[] array, int begin, int end) {
+        if (array == null || array.length == 0 || begin >= end) {
+            return;
+        }
+        int left = begin * 2 + 1;
+        int right = begin * 2 + 2;
+        //左子树遍历找最大值，并放到父节点
+        if (left <= end && array[begin] < array[left]) {
+            swap(array, begin, left);
+            adjustHeap(array, left, end);
+        }
+        //右子树遍历找最大值，并放到父节点
+        if (right <= end && array[begin] < array[right]) {
+            swap(array, begin, right);
+            adjustHeap(array, right, end);
+        }
     }
 
     public static int[] radixSort(int[] array){
@@ -350,9 +386,9 @@ public class Sort {
 
     public static void main(String[] args) {
         String s = "3,4,2,5,1";
-        int[] t = new int[] {2,4,1,2,6,2,7};
+        int[] t = new int[] {6,3,1,2,5,8,9};
         //System.out.println(node2num(s));
-        display(quickSort2(t,0,t.length-1));
+        display(heapSort(t));
     }
 
 }

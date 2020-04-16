@@ -75,11 +75,51 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/ls/leetcode/editor/cn/[120]三角形最小路径和.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/ls/leetcode/editor/cn/[120]三角形最小路径和.java" />
+              <option name="questionId" value="120" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/ls/leetcode/editor/cn/[123]买卖股票的最佳时机 III.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/ls/leetcode/editor/cn/[123]买卖股票的最佳时机 III.java" />
+              <option name="questionId" value="123" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/ls/leetcode/editor/cn/[139]单词拆分.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/ls/leetcode/editor/cn/[139]单词拆分.java" />
+              <option name="questionId" value="139" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/ls/leetcode/editor/cn/[221]最大正方形.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/ls/leetcode/editor/cn/[221]最大正方形.java" />
+              <option name="questionId" value="221" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/ls/leetcode/editor/cn/[257]二叉树的所有路径.java">
           <value>
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/ls/leetcode/editor/cn/[257]二叉树的所有路径.java" />
               <option name="questionId" value="257" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/ls/leetcode/editor/cn/[264]丑数 II.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/ls/leetcode/editor/cn/[264]丑数 II.java" />
+              <option name="questionId" value="264" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -91,11 +131,27 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/ls/leetcode/editor/cn/[94]二叉树的中序遍历.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/ls/leetcode/editor/cn/[94]二叉树的中序遍历.java" />
+              <option name="questionId" value="94" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/ls/leetcode/editor/cn/[96]不同的二叉搜索树.java">
           <value>
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/ls/leetcode/editor/cn/[96]不同的二叉搜索树.java" />
               <option name="questionId" value="96" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/ls/src/leetcode/editor/cn/[1000]合并石头的最低成本.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/ls/src/leetcode/editor/cn/[1000]合并石头的最低成本.java" />
+              <option name="questionId" value="1042" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -376,6 +432,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/ls/src/leetcode/editor/cn/[783]二叉搜索树结点最小距离.java" />
               <option name="questionId" value="799" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/ls/src/leetcode/editor/cn/[804]唯一摩尔斯密码词.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/ls/src/leetcode/editor/cn/[804]唯一摩尔斯密码词.java" />
+              <option name="questionId" value="822" />
             </LeetcodeEditor>
           </value>
         </entry>
