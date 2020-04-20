@@ -1,11 +1,9 @@
 import java.lang.reflect.Array;
-<<<<<<< HEAD
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
-=======
 import java.util.*;
->>>>>>> e2ff76713ddc738afb3be97b661aba925ed44233
 
 public class demo {
 
@@ -79,27 +77,6 @@ public class demo {
         return stage[N];
     }
 
-    public static boolean wordBreak(String s, List<String> wordDict) {
-        //遍历顺序很重要，从后往前遍历
-        int n = s.length();
-        boolean[] stage = new boolean[n+1];
-        stage[0] = true;
-        String res1 = "";
-        String res2 = "";
-        for(int i = 0; i < n; i++){
-            res1 = res1 + s.charAt(i);
-            res2 = res2 + s.charAt(i);
-            for(String item : wordDict){
-                if(res2.equals(item) || res1.equals(item) && stage[i - res1.length() + 1]){
-                    stage[i+1] = true;
-                    res1 = "";
-                    break;
-                }
-            }
-        }
-        return stage[n];
-
-    }
 
     public static boolean canPartition(int[] nums) {
         int n = nums.length;
@@ -130,34 +107,12 @@ public class demo {
     }
 
 
+
     public static void main(String[] args){
         int n = Integer.MIN_VALUE;
-        List<String> table = new ArrayList<String>();
-        table.add("aaaa");
-        table.add("aaa");
-<<<<<<< HEAD
-        List<Integer> res = new ArrayList<Integer>();
-        res.add(1);
-        res.clear();
-        String ss = "111";
-        Stack<Integer> s = new Stack<Integer>();
-        s.isEmpty()
-
-
-
-
-        //System.out.println(numSquares(18));
-        System.out.println(res);
-=======
-        String s = "aaaaaaa";
-        Queue<String> queue = new LinkedList<String>();
-        //Arrays.sort(new int[] {1,5,11,5});
-        System.out.println(canPartition(new int[] {1,2,3,4,5,6,7}));
-
-
-
         //System.out.println(numOfSquare(18));
-        //System.out.println(wordBreak(s,table));
->>>>>>> e2ff76713ddc738afb3be97b661aba925ed44233
+        List<String> l = new ArrayList<String>();
+        l.add("goy");
+        l.add("name");
     }
 }
