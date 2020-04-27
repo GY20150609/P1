@@ -181,51 +181,49 @@ public class Sort {
     }
 
     public static int[] heapSort(int[] array) {
-
-        initHeap(array,0,array.length-1);
-        for (int i = array.length - 1; i >= 1; i--) {
-            swap(array, i, 0);
-            adjustHeap(array, 0, i - 1);
+        //不断建立堆并首尾元素
+        for (int i = 0; i < array.length; i++) {
+            initheapify(array,array.length - i);
+            int temp = array[0];
+            array[0] = array[array.length - 1 - i];
+            array[array.length - 1 - i] = temp;
         }
         return array;
     }
 
-    public static void initHeap(int[] array,int index,int end){
-        if (array == null || index > end) {
-            return;
-        }
-        boolean flag = true;
-        //从底向上遍历
-        for (int i = end; i >= index; i--) {
-            //计算当前节点的父节点
-            int parent = (i - 1) / 2;
-            if (array[i] > array[parent]) {
-                swap(array, i, parent);
-                flag = false;
+    //以currNode为根节点建大顶堆
+    public static void heapify (int[] array,int currNode,int size) {
+        if (currNode < size) {
+            int left = 2 * currNode + 1;
+            int right = 2 * currNode + 2;
+            int max = currNode;
+            //左节点比较
+            if(left < size) {
+                if (array[left] > max) {
+                    max = left;
+                }
             }
-        }
-        //若底层有调整，则继续递归
-        if (!flag) {
-            initHeap(array, index, end);
+            //右节点比较
+            if (right < size) {
+                if (array[right] > max) {
+                    max = right;
+                }
+            }
+            if (max != currNode) {
+                int temp = array[currNode];
+                array[currNode] = array[max];
+                array[max] = temp;
+                //交换后可能导致交换节点处不符合大顶堆性质
+                heapify(array,max,size);
+            }
         }
 
     }
 
-    public static void adjustHeap(int[] array, int begin, int end) {
-        if (array == null || array.length == 0 || begin >= end) {
-            return;
-        }
-        int left = begin * 2 + 1;
-        int right = begin * 2 + 2;
-        //左子树遍历找最大值，并放到父节点
-        if (left <= end && array[begin] < array[left]) {
-            swap(array, begin, left);
-            adjustHeap(array, left, end);
-        }
-        //右子树遍历找最大值，并放到父节点
-        if (right <= end && array[begin] < array[right]) {
-            swap(array, begin, right);
-            adjustHeap(array, right, end);
+    //从最后子节点开始建立堆
+    public static void initheapify (int[] array, int size) {
+        for (int i = size - 1; i >= 0; i--) {
+            heapify(array,i,size);
         }
     }
 
@@ -383,6 +381,34 @@ public class Sort {
         }
         return placeHolderArr;
     }
+
+    public static void heap(int[] array, int currNode, int size) {
+        if(currNode < size) {
+            int left = currNode * 2 + 1;
+            int right = currNode * 2 + 2;
+            int max = currNode;
+            if (left < size) {
+                if (array[left] > array[max]) {
+                    max = left;
+                }
+            }
+            if (right < size) {
+                if (array[right] > array[max]) {
+                    max = right;
+                }
+            }
+            if(max != currNode) {
+                int temp = array[max];
+                array[max] = array[currNode];
+                array[currNode] = temp;
+                heap(array,max,size);
+            }
+        }
+    }
+
+
+
+
 
     public static void main(String[] args) {
         String s = "3,4,2,5,1";
