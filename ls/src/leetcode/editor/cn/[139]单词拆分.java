@@ -33,25 +33,22 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public boolean wordBreak(String s, List<String> wordDict) {
-        //遍历顺序很重要，从后往前遍历
+        if (s.equals("")) {
+            return false;
+        }
         int n = s.length();
         boolean[] stage = new boolean[n+1];
         stage[0] = true;
-        String res1 = "";
-        String res2 = "";
-        for(int i = 0; i < n; i++){
-            res1 = res1 + s.charAt(i);
-            res2 = res2 + s.charAt(i);
-            for(String item : wordDict){
-                if((res2.equals(item) && stage[i - res2.length() + 1]) || (res1.equals(item) && stage[i - res1.length() + 1])){
-                    stage[i+1] = true;
-                    res1 = "";
+        int i,j;
+        for (i = 1; i <= n; i++) {
+            for (j = i - 1; j >= 0; j--) {
+                if (stage[j] && wordDict.contains(s.substring(j,i))) {
+                    stage[i] = true;
                     break;
                 }
             }
         }
         return stage[n];
-
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
