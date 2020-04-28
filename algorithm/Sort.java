@@ -171,17 +171,60 @@ public class Sort {
         return array;
     }
 
-    public static int[] heapSort(int[] array) {
-
-        for(int i = array.length - 1; i >= 0; i++) {
-            heapfy(array,i,0);
+    public static int[] quickSort2(int[] array, int left, int right) {
+        if(left < right) {
+            int mid = partition(array,left,right);
+            quickSort2(array,left,mid);
+            quickSort2(array,mid+1,right);
         }
-
         return array;
     }
 
-    public static void heapfy(int[] array,int n,int i) {
+    public static int[] heapSort(int[] array) {
+        //不断建立堆并首尾元素
+        for (int i = 0; i < array.length; i++) {
+            initheapify(array,array.length - i);
+            int temp = array[0];
+            array[0] = array[array.length - 1 - i];
+            array[array.length - 1 - i] = temp;
+        }
+        return array;
+    }
 
+    //以currNode为根节点建大顶堆
+    public static void heapify (int[] array,int currNode,int size) {
+        if (currNode < size) {
+            int left = 2 * currNode + 1;
+            int right = 2 * currNode + 2;
+            int max = currNode;
+            //左节点比较
+            if(left < size) {
+                if (array[left] > max) {
+                    max = left;
+                }
+            }
+            //右节点比较
+            if (right < size) {
+                if (array[right] > max) {
+                    max = right;
+                }
+            }
+            if (max != currNode) {
+                int temp = array[currNode];
+                array[currNode] = array[max];
+                array[max] = temp;
+                //交换后可能导致交换节点处不符合大顶堆性质
+                heapify(array,max,size);
+            }
+        }
+
+    }
+
+    //从最后子节点开始建立堆
+    public static void initheapify (int[] array, int size) {
+        for (int i = size - 1; i >= 0; i--) {
+            heapify(array,i,size);
+        }
     }
 
     public static int[] radixSort(int[] array){
@@ -258,6 +301,24 @@ public class Sort {
 
     }
 
+    public static int partition(int[] array, int left,int right) {
+        int pivotVal = array[left];
+        int l = left;
+        int r = left + 1;
+        while(r < right) {
+            if(array[r] < pivotVal) {
+                l++;
+                int temp = array[l];
+                array[l] = array[r];
+                array[r] = temp;
+            }
+            r++;
+        }
+        array[left] = array[l];
+        array[l] = pivotVal;
+        return left;
+    }
+
     public static int[] merge(int[] array,int r_s,int r_e){
         int insertVal;
         for (int i = r_s; i <= r_e; i++){
@@ -321,11 +382,39 @@ public class Sort {
         return placeHolderArr;
     }
 
+    public static void heap(int[] array, int currNode, int size) {
+        if(currNode < size) {
+            int left = currNode * 2 + 1;
+            int right = currNode * 2 + 2;
+            int max = currNode;
+            if (left < size) {
+                if (array[left] > array[max]) {
+                    max = left;
+                }
+            }
+            if (right < size) {
+                if (array[right] > array[max]) {
+                    max = right;
+                }
+            }
+            if(max != currNode) {
+                int temp = array[max];
+                array[max] = array[currNode];
+                array[currNode] = temp;
+                heap(array,max,size);
+            }
+        }
+    }
+
+
+
+
+
     public static void main(String[] args) {
         String s = "3,4,2,5,1";
-        int[] t = new int[] {1,3,2,2,4,5};
+        int[] t = new int[] {6,3,1,2,5,8,9};
         //System.out.println(node2num(s));
-        display(quickSort1(t,0,t.length-1));
+        display(heapSort(t));
     }
 
 }

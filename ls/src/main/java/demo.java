@@ -1,5 +1,4 @@
 import java.lang.reflect.Array;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
@@ -52,8 +51,6 @@ public class demo {
         return res[n];
     }
 
-
-
     public static boolean divisorGame(int N) {
         if (N == 1){
             return false;
@@ -77,6 +74,27 @@ public class demo {
         return stage[N];
     }
 
+    public static boolean wordBreak(String s, List<String> wordDict) {
+        //遍历顺序很重要，从后往前遍历
+        int n = s.length();
+        boolean[] stage = new boolean[n+1];
+        stage[0] = true;
+        String res1 = "";
+        String res2 = "";
+        for(int i = 0; i < n; i++){
+            res1 = res1 + s.charAt(i);
+            res2 = res2 + s.charAt(i);
+            for(String item : wordDict){
+                if(res2.equals(item) || res1.equals(item) && stage[i - res1.length() + 1]){
+                    stage[i+1] = true;
+                    res1 = "";
+                    break;
+                }
+            }
+        }
+        return stage[n];
+
+    }
 
     public static boolean canPartition(int[] nums) {
         int n = nums.length;
@@ -107,12 +125,9 @@ public class demo {
     }
 
 
+    public static void main(String[] args) {
 
-    public static void main(String[] args){
-        int n = Integer.MIN_VALUE;
-        //System.out.println(numOfSquare(18));
-        List<String> l = new ArrayList<String>();
-        l.add("goy");
-        l.add("name");
+        List<List<Integer>> t = new ArrayList<List<Integer>>();
+        Integer.MAX_VALUE;
     }
 }
