@@ -169,7 +169,7 @@ public class BitMap {
 3.将找到的重合query汇总;
 4.缺点：频繁地读写磁盘;
 ```
-- Bloomfilter(近似做法) - 识别风险网站挺有用
+- Bloomfilter(近似做法) - 识别风险网站挺有用 <br/>
 ![布隆滤波器](bloomfilter.JPG) <br/>
 ```aidl
 1.位数组+k个独⽴立hash函数;
