@@ -170,7 +170,7 @@ public class BitMap {
 4.缺点：频繁地读写磁盘;
 ```
 - Bloomfilter(近似做法) - 识别风险网站挺有用
-![布隆滤波器](bloomfilter.JPG)
+![布隆滤波器](bloomfilter.JPG) <br/>
 ```aidl
 1.位数组+k个独⽴立hash函数;
 2.将各hash函数对应的值的位数组置1;
@@ -186,14 +186,17 @@ public class BitMap {
 2. Bloomfilter无法删除一个元素；
 ```
 ### 2.4 Trie树(前缀树|字典树)
-![](trie.JPG)
+![](trie.JPG) <br/>
+
 > 样例7：给上千个文件，每个文件大小为1K—100M。给n个词，对每个词找到所有包含它的⽂件，你只有100K内存，不允许使⽤用磁盘空间 <br/>
 
 ### 2.5 倒排索引
-- 创建文档列表
-![](reverseIndex1.jpg)
-- 创建倒排索引列表
+- 创建文档列表 <br/>
+![](reverseIndex1.jpg) 
+
+- 创建倒排索引列表 <br/>
 ![](reverseIndex2.jpg)
+
 > 样例8：有一个词典，包含N个英⽂单词，现在任意给一个字符串，找出包含这个字符串的所有英文单词
 
 
