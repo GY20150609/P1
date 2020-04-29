@@ -130,13 +130,56 @@ public class demo {
         return res;
     }
 
+    public static String longestCommonPrefix(String[] strs) {
+        int len = strs.length;
+        if (len == 0) {
+            return "";
+        }
+        if (len == 1) {
+            return strs[0];
+        }
+        String res = "";
+        String shortString = "";
+        int shortLen = Integer.MAX_VALUE;
+
+        for (int i = 0; i < len; i++) {
+            int tmplen = strs[i].length();
+            if (tmplen < shortLen) {
+                shortString = strs[i];
+                shortLen = tmplen;
+            }
+        }
+
+        for (int j = 0; j < shortLen; j++) {
+            for (String item : strs) {
+                if (shortString.charAt(j) != item.charAt(j)) {
+                    break;
+                }
+            }
+            res += shortString.charAt(j);
+        }
+
+        return res;
+
+    }
+
 
 
 
     public static void main(String[] args) {
 
+
+        String[] ss = {"flow","flower","flight"};
+
+        System.out.println(longestCommonPrefix(ss));
+
+        Set<String> sss = new HashSet<String>();
+
+
+
         List<List<Integer>> t = new ArrayList<List<Integer>>();
         String s = "aabbccddee";
+        //s.length();
         s.replace("a","b");
     }
 }
