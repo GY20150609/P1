@@ -41,7 +41,7 @@ public class BitwiseOperation {
     结论：等价于/2
      */
 
-    public static void main(String[] args){
+    public static void main(SString[] args){
         int[]  arr = {1,1,2,2,3};
         System.out.println(findSingleNum(arr));
     }
