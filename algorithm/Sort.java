@@ -316,7 +316,7 @@ public class Sort {
         }
         array[left] = array[l];
         array[l] = pivotVal;
-        return left;
+        return l;
     }
 
     public static int[] merge(int[] array,int r_s,int r_e){
@@ -414,7 +414,7 @@ public class Sort {
         String s = "3,4,2,5,1";
         int[] t = new int[] {6,3,1,2,5,8,9};
         //System.out.println(node2num(s));
-        display(heapSort(t));
+        display(quickSort2(t,0,7));
     }
 
 }
