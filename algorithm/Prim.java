@@ -52,7 +52,7 @@ public class Prim {
         }
     }
 
-    public static void main(String[] args){
+    public static void main(SString[] args){
 
         int num = 7;
         char[] node = {'A','B','C','D','E','F','G'};

@@ -2,7 +2,7 @@ package algorithm;
 
 public class KMP {
 
-    public static int KMPSearch(String source, String desp,int[] next) {
+    public static int KMPSearch(String source, String desp, int[] next) {
         char[] s = source.toCharArray();
         char[] p = desp.toCharArray();
         int i = 0;

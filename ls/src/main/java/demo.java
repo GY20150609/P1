@@ -124,10 +124,19 @@ public class demo {
         return curSum1 == curSum2;
     }
 
+    public static String sReplace (String source, String oldS,String newS) {
+        String res = "";
+
+        return res;
+    }
+
+
+
 
     public static void main(String[] args) {
 
         List<List<Integer>> t = new ArrayList<List<Integer>>();
-        Integer.MAX_VALUE;
+        String s = "aabbccddee";
+        s.replace("a","b");
     }
 }

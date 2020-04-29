@@ -37,7 +37,7 @@ public class QuickPow {
         return res;
     }
 
-    public static void main (String[] args) {
+    public static void main (SString[] args) {
         System.out.println(QBitePow(2,5));
     }
 }
