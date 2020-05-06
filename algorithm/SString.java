@@ -1,5 +1,8 @@
 package algorithm;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class SString {
 
     public static int sHash (String source, int magicNumber, int range) {
@@ -107,15 +110,103 @@ public class SString {
         return -1;
     }
 
+    //单序列
+    //1.满足某种条件的字串（HashSet存储不重复字符|HashMap存储字符+索引滑动窗口）
+    /*
+    left >> i 代表了当前的子串
+    如果出现了重复元素，则left右移+1
+
+     */
+    public static int lengthOfLongestSubstring(String s) {
+        if (s == null) {
+            return -1;
+        }
+
+        int slen = s.length();
+
+        if (slen < 2) {
+            return slen;
+        }
+
+        //思路1 ： HashMap 持久记忆
+        int i;
+        int tmpMax = 0;
+        //新字串的开始索引
+        int left = 0;
+        Map<Character,Integer> table = new HashMap<>();
+
+        for (i = 0; i < slen; i++) {
+            Character item= s.charAt(i);
+            if (table.containsKey(item)) {
+                left = Math.max(left,table.get(item)+1);
+            }
+            table.put(item,i);
+            tmpMax = tmpMax < i - left + 1 ? i - left + 1 : tmpMax;
+        }
+        return tmpMax;
+    }
+
+
+    //双序列
+    /*
+    1.最长公共子序列 -A,B（二维DP：max + 双索引）
+    2.字符换是否能交叉组成 -S,A,B S去掉A之后是否为B (二维DP: if+ A|B双索引，索引之和可以表示S)
+    3.最小编辑距离 A > B, （二维DP: min,具体操作在A种索引处发生，这里注意插入不涉及元素操作，A索引不用退位）
+    4.不重复子序列个数 - A,B (二维DP: sum, B当前索引处元素和A当前索引处相不等=stage[i-1][j]，若相等则需要加上stage[i-1][j-1])
+     */
+    //滚动数组实现4
+    public static int numDistinctSubsequence (String source,String target) {
+        if (source == null || target == null) {
+            return -1;
+        }
+        int slen = source.length();
+        int tlen = target.length();
+        if (tlen == 0) {
+            return 1;
+        }
+        int[][] stage = new int[2][tlen+1];
+        int now = 0, old = 0;
+
+        for (int i = 0; i <= slen; i++) {
+            old = now;
+            now = 1 - now;
+            for (int j = 0; j <= tlen; j++) {
+                //计算顺序要注意
+                if (j == 0) {
+                    stage[now][j] = 1;
+                    continue;
+                }
+
+                if (i == 0) {
+                    stage[now][j] = 0;
+                    continue;
+                }
+
+                stage[now][j] = stage[old][j];
+
+                if (source.charAt(i-1) == target.charAt(j-1)) {
+                    stage[now][j] += stage[old][j-1];
+                }
+
+            }
+
+        }
+        return stage[now][tlen];
+    }
+
     
     public static void main(String[] args) {
         String s = "adabaac";
         String o = "a";
         String n = "e";
+        boolean flag= true;
+
         //System.out.println(sHash("ada",31,60000));
         //System.out.println(BruteForceFirst(s,p));
         //System.out.println(RabinKarpFirst(s,p));
         //System.out.println(BFReplaceAll(s,o,n));
-        System.out.println(s);
+        //System.out.println(numDistinctSubsequence("abcdddedf","abcdf"));
+        boolean tmp = flag;
+        System.out.println();
     } 
 }
