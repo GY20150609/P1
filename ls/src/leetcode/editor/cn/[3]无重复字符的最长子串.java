@@ -27,6 +27,24 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int lengthOfLongestSubstring(String s) {
+        if (s == null ) {
+            return -1;
+        }
+        int slen = s.length();
+        if (slen <= 1) {
+            return slen;
+        }
+        //HashMap实现
+        int tmpMax = 0;
+        Map<String,Integer> table = new HashMap<>();
+        for (int i = 0; i < slen; i++) {
+            if (table.contains(s.substring(i,i+1))) {
+                table.clear();
+            }
+            table.add(s.substring(i,i+1));
+            tmpMax = table.size() > tmpMax ? table.size() : tmpMax;
+        }
+        return tmpMax;
 
     }
 }
