@@ -9,6 +9,7 @@ public class Sort {
         for (int i = 0; i < array.length; i++) {
             System.out.print(array[i] + " ");
         }
+        System.out.println();
     }
 
     public static void display(int[][] array) {
@@ -97,38 +98,6 @@ public class Sort {
         return array;
     }
 
-    public static int[] quickSort(int[] array, int low, int high){
-
-        //退出条件
-        if(low>high) return array;
-        int mid= low+(high-low)/2;
-        int pivot= array[mid];
-        int i=low;
-        int j=high;
-        // 遍历到中点处相遇为止
-        while(i<=j){
-            //左边找到第一个大于目标值的索引
-            while(array[i]<pivot)
-                i++;
-            //右边找到第一个小于目标值的索引
-            while(array[j]>pivot)
-                j--;
-            //确保交换的是目标值左、右两边元素
-            if(i<=j){
-                swap(array,i,j);
-                i++;
-                j--;
-            }
-        }
-        //目标值左边部分遍历
-        if(low<j)
-            quickSort(array, low, j);
-        //目标值右边部分遍历
-        if(high>i)
-            quickSort(array, i, high);
-        return array;
-    }
-
     public static int[] quickSort1(int[] array,int left,int right) {
         //结束条件
         if(left > right) {
@@ -174,59 +143,27 @@ public class Sort {
     public static int[] quickSort2(int[] array, int left, int right) {
         if(left < right) {
             int mid = partition(array,left,right);
-            quickSort2(array,left,mid);
+            display(array);
+            quickSort2(array,left,mid-1);
             quickSort2(array,mid+1,right);
         }
         return array;
     }
 
     public static int[] heapSort(int[] array) {
-        //不断建立堆并首尾元素
-        for (int i = 0; i < array.length; i++) {
-            initheapify(array,array.length - i);
-            int temp = array[0];
-            array[0] = array[array.length - 1 - i];
-            array[array.length - 1 - i] = temp;
+        //
+        int size = array.length;
+        initheapify(array,size);
+        for (int i = 1; i < size; i++) {
+            swap(array,0,size - i);
+            //size--;
+            heapify(array,0,size - i);
         }
         return array;
     }
 
-    //以currNode为根节点建大顶堆
-    public static void heapify (int[] array,int currNode,int size) {
-        if (currNode < size) {
-            int left = 2 * currNode + 1;
-            int right = 2 * currNode + 2;
-            int max = currNode;
-            //左节点比较
-            if(left < size) {
-                if (array[left] > max) {
-                    max = left;
-                }
-            }
-            //右节点比较
-            if (right < size) {
-                if (array[right] > max) {
-                    max = right;
-                }
-            }
-            if (max != currNode) {
-                int temp = array[currNode];
-                array[currNode] = array[max];
-                array[max] = temp;
-                //交换后可能导致交换节点处不符合大顶堆性质
-                heapify(array,max,size);
-            }
-        }
 
-    }
-
-    //从最后子节点开始建立堆
-    public static void initheapify (int[] array, int size) {
-        for (int i = size - 1; i >= 0; i--) {
-            heapify(array,i,size);
-        }
-    }
-
+    //整数排序
     public static int[] radixSort(int[] array){
         // 1. 获取待排数组最大值
         int maxValue = findMax(array);
@@ -301,11 +238,67 @@ public class Sort {
 
     }
 
+    //数据范围小，重复元素多,整数排序
+    public static int[] countSort(int[] array) {
+        int min = array[0], max = array[0];
+        for (int i = 0; i < array.length; i++) {  // 扫描一次，得到最大值和最小值  o(n)
+            if (array[i] < min) min = array[i];
+            if (array[i] > max) max = array[i];
+        }
+        int[] countArr = new int[max - min + 1];  // 新建数组存储元素频次
+        for (int i = 0; i < array.length; i++) {  // o(n)
+            countArr[array[i] - min] = countArr[array[i] - min] + 1;
+        }
+        int k = 0;
+        int[] res = new int[array.length];  // ~o(n)
+        for (int i = 0; i < max - min + 1; i++) {
+            if (countArr[i] > 0) {
+                for (int j = 0; j < countArr[i]; j++) {
+                    res[k++] = i + min;
+                }
+            }
+        }
+        return res;
+    }
+
+    //以currNode为根节点建大顶堆
+    public static void heapify (int[] array,int currNode,int size) {
+        if (currNode < size) {
+            int left = 2 * currNode + 1;
+            int right = 2 * currNode + 2;
+            int max = currNode;
+            //左节点比较
+            if(left < size && array[left] > array[max]) {
+                max = left;
+            }
+            //右节点比较
+            if (right < size && array[right] > array[max]) {
+                max = right;
+            }
+            if (max != currNode) {
+                int temp = array[currNode];
+                array[currNode] = array[max];
+                array[max] = temp;
+                //交换后可能导致交换节点处不符合大顶堆性质
+                heapify(array,max,size);
+            }
+        }
+
+    }
+
+    //从最后子节点开始建立堆
+    public static void initheapify (int[] array, int size) {
+        for (int i = size/2; i >= 0; i--) {
+            heapify(array,i,size);
+        }
+    }
+
     public static int partition(int[] array, int left,int right) {
         int pivotVal = array[left];
         int l = left;
         int r = left + 1;
-        while(r < right) {
+        //注意是遍历比较所有元素，不是前一个，如果小于号的话最后一个元素不参与比较
+        while(r <= right) {
             if(array[r] < pivotVal) {
                 l++;
                 int temp = array[l];
@@ -321,8 +314,9 @@ public class Sort {
 
     public static int[] merge(int[] array,int r_s,int r_e){
         int insertVal;
+        int to_index;
         for (int i = r_s; i <= r_e; i++){
-            int to_index = i - 1;
+            to_index = i - 1;
             insertVal = array[i];
             while(to_index >= 0 && insertVal < array[to_index]) {
                 array[to_index + 1] = array[to_index];
@@ -365,46 +359,131 @@ public class Sort {
         return value%10;
     }
 
-    public static int[][] test(int[] arr,int buckets){
-        int min = arr[0], max = arr[1];
-        for (int i = 0; i < arr.length; i++) {  // 第一趟扫描，找到最小值和最大值
-            if (arr[i] < min) min = arr[i];
-            if (arr[i] > max) max = arr[i];
+
+
+    //starting here
+
+    public static int[] cS2(int[] array) {
+        int len = array.length;
+        if (len <= 1) {
+            return array;
         }
-        int numOfBucket = (max - min + 1) / buckets + ((max - min + 1)%buckets == 0 ? 0 : 1);  // 每个桶里的元素数量
-        int[] bucketNum = new int[buckets];  // 用于指示桶里是否有数据
-        int[][] placeHolderArr = new int[buckets][numOfBucket];  // 存放数据
-        for (int i = 0; i < arr.length; i++) {
-            int bucket = (arr[i] - min) / numOfBucket;
-            placeHolderArr[bucket][bucketNum[bucket]] = arr[i];
-            bucketNum[bucket] = bucketNum[bucket] + 1;
+        int tmpMin = array[0];
+        int tmpMax = array[0];
+        //确定数据范围-最大、小值
+        for (int i = 1; i < len; i++) {
+            tmpMin = array[i] < tmpMin ? array[i] : tmpMin;
+            tmpMax = array[i] > tmpMax ? array[i] : tmpMax;
         }
-        return placeHolderArr;
+        //初始化额外计数空间
+        int[] countArr = new int[tmpMax - tmpMin + 1];
+        //逐个计算出现次数
+        for (int i = 0; i < len; i++) {
+            countArr[array[i] - tmpMin] += 1;
+        }
+        //取出元素，存储到res
+        int[] res = new int[array.length];
+        int indx = 0;
+        for (int i = 0; i <= tmpMax - tmpMin; i++) {
+            if (countArr[i] > 0) {
+                for (int j = 0; j < countArr[i]; j++) {
+                    res[indx++] = tmpMin + i;
+                }
+            }
+        }
+        return res;
     }
 
-    public static void heap(int[] array, int currNode, int size) {
-        if(currNode < size) {
-            int left = currNode * 2 + 1;
-            int right = currNode * 2 + 2;
-            int max = currNode;
-            if (left < size) {
-                if (array[left] > array[max]) {
-                    max = left;
-                }
+    public static int[] qS3(int[] array,int left,int right) {
+        if (left < right) {
+            int indx = partition3(array,left,right);
+            qS3(array,left,indx-1);
+            qS3(array,indx+1,right);
+        }
+
+        return array;
+    }
+
+    public static int partition3 (int[] array,int left,int right) {
+        int pivotVal = array[left];
+        int l = left;
+        int r = left + 1;
+        while (r <= right) {
+            if (array[r] < pivotVal) {
+                l++;
+                swap(array,l,r);
             }
-            if (right < size) {
-                if (array[right] > array[max]) {
-                    max = right;
-                }
-            }
-            if(max != currNode) {
-                int temp = array[max];
-                array[max] = array[currNode];
-                array[currNode] = temp;
-                heap(array,max,size);
-            }
+            r++;
+        }
+        //容易遗漏，注意交换基准值
+        swap(array,left,l);
+        return l;
+    }
+
+    public static void mS2(int[] array, int left, int right) {
+        if (left < right) {
+            int mid = left + (right - left) / 2;
+            mS2(array,left,mid);
+            mS2(array,mid+1,right);
+            merge2(array,mid+1,right);
         }
     }
+
+    public static void merge2 (int[] array, int rs,int re) {
+        int toInsertIndx;
+        int insertVal;
+        for (int i = rs; i <= re; i++) {
+            insertVal = array[i];
+            toInsertIndx = i - 1;
+            while (toInsertIndx >= 0 && insertVal < array[toInsertIndx]) {
+                array[toInsertIndx+1] = array[toInsertIndx];
+                toInsertIndx--;
+            }
+            //注意自增顺序
+            array[++toInsertIndx] = insertVal;
+        }
+    }
+
+    public static int[] rS2 (int[] array) {
+        int len = array.length;
+        //找最大的数
+        int tmpMax = array[0];
+        for (int i = 1; i < len; i++) {
+            tmpMax = tmpMax < array[i] ? array[i] : tmpMax;
+        }
+        //确定位数
+        int numSize = numSize(tmpMax);
+
+
+
+        return array;
+    }
+
+    public static int numSizeOri (int val) {
+        int num = 0;
+        while (val > 0) {
+            val /= 10;
+            num++;
+        }
+        return num;
+    }
+
+    public static int numSize (int val) {
+        int[] range = new int[]{9,99,999,9999,99999,999999,9999999,99999999,999999999};
+        for (int i = 0; i < range.length; i++) {
+            if (val < range[i]) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public static int numLevel (int val, int level) {
+
+    }
+
+
+    //ending here
 
 
 
@@ -414,7 +493,8 @@ public class Sort {
         String s = "3,4,2,5,1";
         int[] t = new int[] {6,3,1,2,5,8,9};
         //System.out.println(node2num(s));
-        display(quickSort2(t,0,7));
+        mS2(t,0,6);
+        display(t);
     }
 
 }
