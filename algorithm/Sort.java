@@ -479,6 +479,7 @@ public class Sort {
     }
 
     public static int numLevel (int val, int level) {
+        return -1;
 
     }
 
