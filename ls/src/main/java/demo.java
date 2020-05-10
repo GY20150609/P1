@@ -163,23 +163,24 @@ public class demo {
 
     }
 
+    public static double myPow(double x, int n) {
+        if (n == 0) {
+            return 1;
+        }
+        else if (n % 2 == 0) {
+            double temp = myPow(x,n/2);
+            return temp * temp;
+        }
+        else {
+            return myPow(x,n-1) * x;
+        }
+
+    }
+
 
 
 
     public static void main(String[] args) {
-
-
-        String[] ss = {"flow","flower","flight"};
-
-        System.out.println(longestCommonPrefix(ss));
-
-        Set<String> sss = new HashSet<String>();
-
-
-
-        List<List<Integer>> t = new ArrayList<List<Integer>>();
-        String s = "aabbccddee";
-        //s.length();
-        s.replace("a","b");
+        System.out.println(myPow(2.0,5));
     }
 }

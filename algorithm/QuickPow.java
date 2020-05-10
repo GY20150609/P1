@@ -37,7 +37,9 @@ public class QuickPow {
         return res;
     }
 
+
+
     public static void main (SString[] args) {
-        System.out.println(QBitePow(2,5));
+        System.out.println(QRecPow(2,5));
     }
 }
